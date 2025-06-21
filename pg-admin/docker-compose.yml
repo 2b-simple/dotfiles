@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: unless-stopped
+    ports:
+      - "16543:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - ./data:/var/lib/pgadmin
+    networks:
+      - npm_network
+
+networks:
+  npm_network:
+    external: true
